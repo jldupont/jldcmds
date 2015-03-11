@@ -32,12 +32,15 @@ def main():
         parser=argparse.ArgumentParser(description=DESC, fromfile_prefix_chars='@')
         parser.add_argument('-d',  dest='debug', action='store_true', help="Debug Mode", default=False)
         
-        parser.add_argument('-p',  dest='target_path',   type=str, help="Target Path", default="/tmp/objs")
+        parser.add_argument('-tp',  dest='target_path',     type=str, help="Target Path",      default="/tmp/objs")
+        parser.add_argument('-fp',  dest='filename_pattern',type=str, help="Filename pattern", required = True)        
         
+        parser.add_argument('-i',   dest='ignore_error', action='store_true', help="Ignore write error", default = False)
+        parser.add_argument('-md5', dest='hash_md5',     action='store_true', help="Hash resulting filename with md5", default = False)
         
         args=parser.parse_args()
         
-        from jldcmds.tools_sys import dnorm, info_dump
+        from jldcmds.common.tools_sys import dnorm, info_dump
         from jldcmds.script_jwrite import run
         
         args=dnorm(vars(args))
