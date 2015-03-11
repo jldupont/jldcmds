@@ -24,7 +24,9 @@ in order to accommodate potentially illegal file names.
 
 Example usage:
 
-`jldcmd-jwrite -i -tp /tmp/objs -fp "$name-$date" -md5`
+`jldcmd-jwrite -i -tp /tmp/objs -fp "\$name-\$date" -md5`
+
+The `\$` is used to espace the python string Template delimiter from bash/sh.
 
 Would liste to stdin, decode each input line as JSON, use the value of the keys "name" and "date" to construct a filename md5 hashed, 
 and finally write the corresponding object to the path `/tmp/objs/hashed_filename`.
