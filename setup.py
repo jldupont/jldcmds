@@ -6,7 +6,7 @@
     @author: jldupont
 """
 __author__  ="Jean-Lou Dupont"
-__version__ ="0.1"
+__version__ ="0.2"
 
 DESC="""
 Overview
@@ -15,6 +15,7 @@ Overview
 Collection of command line tools
 
 * jldcmd-jwrite: read JSON objects from stdin and write to target path
+* jldcmd-wsniff: sniff beacon, probe request & response from a 802.11 interface, outputs JSON to stdout
 """
 
 
@@ -30,11 +31,13 @@ setup(name=         'jldcmds',
       url=          'https://github.com/jldupont/jldcmds',
       package_dir=  {'': "src",},
       packages=     find_packages("src"),
-      scripts=      ['src/scripts/jldcmd-jwrite',
+      scripts=      ['src/scripts/jldcmd-jwrite'
+                     ,'src/scripts/jldcmd-wsniff'
                      ],
       zip_safe=False
       ,long_description=DESC
-      ,install_requires=[ "argparse", 
+      ,install_requires=[ "argparse" 
+                         ,'scapy'
                          ]
       )
 
