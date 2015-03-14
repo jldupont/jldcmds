@@ -5,6 +5,7 @@ Various Command Line Tools
 
 * jldcmd-jwrite : write stdin JSON objects to target path
 * jldcmd-wsniff : sniff 'beacon', 'probe request' and 'probe response' packets from an IEEE802.11 network interface
+* jldcmd-wscan  : scan through 802.11 channels using a pattern
 
 
 ## jldcmd-jwrite
@@ -52,6 +53,13 @@ The specified WLAN interface must have been configured in `monitor` mode for the
 
 Note that not all WLAN NICs support the `monitor` mode. For my tests, I have used a Panda Wireless USB dongle model PAU-03 which
 includes a Ralink Technology chipset (USB device ID: 148f:5370).
+
+## jldcmd-wscan
+
+This command allows scanning 802.11 channels one by one using a pattern `channel:duration channel:duration ...`.
+
+`jldcmd-wscan -iface wlan0 -p 1:5 6:10 11:5`  would scan channel 1 for 5 seconds, next on channel 6 for 10 seconds 
+and finally channel 11 for 5 seconds before repeating the pattern.
 
 History
 =======
