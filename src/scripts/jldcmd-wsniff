@@ -1,0 +1,59 @@
+#!/usr/bin/env python
+"""
+    Sniff a number of IEEE802.11 (WLAN) management packets
+    
+    @author: Jean-Lou Dupont
+"""
+__version__="0.1"
+import os, sys, argparse
+op=os.path
+
+try:
+    import jldcmds #@UnusedImport
+except:
+    ### must be in dev mode then    
+    this_dir=op.dirname(__file__)
+    lib_path=op.abspath(op.join(this_dir, ".."))
+    sys.path.insert(0, lib_path)
+    import jldcmds #@UnusedImport
+
+########################################################################
+
+DESC="Sniff WLAN packets - version %s" % __version__
+DEFAULTS={
+          }
+
+def main():
+    try:
+        import jldcmds.common.do_setup #@UnusedImport
+        import logging
+        import jldcmds.do_checks2      #@UnusedImport
+        
+        parser=argparse.ArgumentParser(description=DESC, fromfile_prefix_chars='@')
+        parser.add_argument('-d',  dest='debug', action='store_true', help="Debug Mode", default=False)
+        
+        parser.add_argument('-iface',  dest='iface',     type=str, help="Interface name",      default="wlan0")       
+        
+        args=parser.parse_args()
+        
+        from jldcmds.common.tools_sys import dnorm, info_dump
+        from jldcmds.script_wsniff import run
+        
+        args=dnorm(vars(args))
+        
+        if args.get('debug', False):
+            info_dump(args, 20)
+                   
+        run(**args)
+
+
+    except KeyboardInterrupt:
+        logging.info("... exiting")
+        sys.exit(0)##no probs
+        
+    except Exception,e:
+        logging.error(str(e))
+        sys.exit(1)
+        
+
+sys.exit(main())
