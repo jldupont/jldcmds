@@ -32,7 +32,7 @@ def main():
         parser=argparse.ArgumentParser(description=DESC, fromfile_prefix_chars='@')
         parser.add_argument('-d',  dest='debug', action='store_true', help="Debug Mode", default=False)
         
-        parser.add_argument('-iface',  dest='iface',     type=str, help="Interface name",      default="wlan0")       
+        parser.add_argument('-iface',    dest='iface',     type=str, help="Interface name",      default="wlan0")
         
         args=parser.parse_args()
         

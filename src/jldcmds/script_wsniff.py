@@ -16,7 +16,7 @@ def is_broadcast_address(addr):
 
 
 def process_packet(pkt):
-
+    
     if pkt.haslayer(sc.Dot11):
 
         if pkt.type == WLAN_FRAME_TYPE_MANAGEMENT:
@@ -30,8 +30,14 @@ def process_packet(pkt):
 
             if not is_broadcast_address(pkt.addr3):
                 p['bssid'] = pkt.addr3 
+    
+            p['rssi'] = pkt.dBm_AntSignal
+            p['channel'] = pkt.Channel
+                
+            p['ssid'] = extract_ssid(pkt)
                 
             is_pkt_of_interest = False
+    
             
             if pkt.subtype == WLAN_FRAME_SUBTYPE_PROBE_REQUEST:
                 is_pkt_of_interest = True
@@ -47,28 +53,18 @@ def process_packet(pkt):
                 is_pkt_of_interest = True
                 p['type'] = 'beacon'
                 
-                p['ssid'] = extract_ssid(pkt)
+                #p['ssid'] = extract_ssid(pkt)
                 
                 
             if is_pkt_of_interest:
                 print json.dumps( p )
                 
-            '''
-                beacon_layer = pkt.getlayer(Dot11Beacon)                
-                for layer in expand(beacon_layer):
-                    if layer.__class__ == Dot11Elt:
-                        if layer.ID == 0:
-                            print layer.info
-            '''
-
 
 
 def run(debug=False, iface = None):
     """
     Entry Point
     """
-    
-
     sniff(iface = iface, store = 0, prn = process_packet)
 #
 #
