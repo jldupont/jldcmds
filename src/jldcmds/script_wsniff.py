@@ -30,11 +30,11 @@ def process_packet(pkt):
 
             if not is_broadcast_address(pkt.addr3):
                 p['bssid'] = pkt.addr3 
-    
+
+            p['channel'] = pkt.Channel    
             p['rssi'] = pkt.dBm_AntSignal
-            p['channel'] = pkt.Channel
-                
             p['ssid'] = extract_ssid(pkt)
+
                 
             is_pkt_of_interest = False
     
@@ -52,8 +52,6 @@ def process_packet(pkt):
             if pkt.subtype == WLAN_FRAME_SUBTYPE_BEACON:
                 is_pkt_of_interest = True
                 p['type'] = 'beacon'
-                
-                #p['ssid'] = extract_ssid(pkt)
                 
                 
             if is_pkt_of_interest:
