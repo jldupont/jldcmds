@@ -61,6 +61,37 @@ This command allows scanning 802.11 channels one by one using a pattern `channel
 `jldcmd-wscan -iface wlan0 -p 1:5 6:10 11:5`  would scan channel 1 for 5 seconds, next on channel 6 for 10 seconds 
 and finally channel 11 for 5 seconds before repeating the pattern.
 
+## Library
+
+The library X contains utility functions to quickly build custom shell commands.
+
+E.g.
+
+	from jldcmds import processor
+	
+	### which files to process
+	input_files = "*.csv"
+	
+	### assuming the filename holds necessary information,
+	### define a "split" pattern
+	filename_pattern = "[\-\_]"
+	
+	def line_processor(filename_components, line_number, line_string):
+		"""
+		Process each line (0 based)
+		@param filename_components: list, index 0 containes full filename
+		
+		@return line string
+		"""
+		if line_number > 0:
+			return line_string.rstrip() + " - "  + filename_components[1] + "\n"
+		
+		return line_string
+	
+	processor(input_files, filename_pattern, line_processor)
+	
+
+
 History
 =======
 

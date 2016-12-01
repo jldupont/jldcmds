@@ -1,0 +1,5 @@
+line 0 ## should be skipped
+line 1 some source data
+line 2 some source data
+line 3 some source data
+line 4 some source data
