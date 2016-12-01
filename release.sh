@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo "Submitting egg to Pypi"
-python setup.py sdist --formats=zip,gztar upload
+python setup.py sdist upload
 
 VERSION=`cat latest`
 
