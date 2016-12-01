@@ -95,5 +95,6 @@ E.g.
 History
 =======
 
+0.4 : alpha release of "lib"
 0.1 : initial release
 

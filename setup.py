@@ -6,7 +6,7 @@
     @author: jldupont
 """
 __author__  ="Jean-Lou Dupont"
-__version__ ="0.3"
+__version__ ="0.4"
 
 DESC="""
 Overview
