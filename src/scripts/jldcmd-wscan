@@ -27,7 +27,7 @@ def main():
     try:
         import jldcmds.common.do_setup #@UnusedImport
         import logging
-        import jldcmds.do_checks2      #@UnusedImport
+        import jldcmds.do_checks      #@UnusedImport
         
         parser=argparse.ArgumentParser(description=DESC, fromfile_prefix_chars='@')
         parser.add_argument('-d',  dest='debug', action='store_true', help="Debug Mode", default=False)
