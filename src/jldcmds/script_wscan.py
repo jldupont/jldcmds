@@ -29,9 +29,7 @@ def make_suite(pattern):
     """
     suite = []
     
-    suite_bits = pattern.split()
-    
-    for entry in suite_bits:
+    for entry in pattern:
         channel_raw, duration_raw = entry.split(":")
         
         channel = int(channel_raw)
