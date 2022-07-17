@@ -1,4 +1,5 @@
 #!/bin/sh
+#@author: jldupont
 
 echo "Submitting egg to Pypi"
 python setup.py sdist
